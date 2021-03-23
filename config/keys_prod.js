@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: process.env.MONGO_URI,
-  secretOrKey: process.env.SECRET_OT_KEY
+  mongoURI: "mongodb+srv://user-mean-eshop:12345678TF@cluster0.x1ccn.mongodb.net/chefbook_dev?retryWrites=true&w=majority",
+  secretOrKey: "123456"
 };
