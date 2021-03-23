@@ -2,6 +2,9 @@
   "name": "chefbook",
   "version": "1.0.0",
   "description": "Social Network for recipe sharing",
+  "engines": {
+    "node": "15.6.0"
+  },
   "main": "server.js",
   "scripts": {
     "client-install": "npm start --prefix client",
