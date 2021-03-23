@@ -44,6 +44,3 @@ if (process.env.NODE.ENV === "production") {
   });
 }
 
-const port = process.env.PORT || 5000; // First port for deployment, second for local development
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
