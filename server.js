@@ -18,7 +18,10 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+  .connect(db, { 
+    useNewUrlParser: true,
+     useUnifiedTopology: true,
+    useFindAndModify: false })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
@@ -44,6 +47,7 @@ if (process.env.NODE.ENV === "production") {
   });
 }
 
-var server = process.env.PORT || 5000
-app.listen(server);
+const port = process.env.PORT || 5000; // First port for deployment, second for local development
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
 
