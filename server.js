@@ -13,6 +13,9 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// Image Folder
+app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
+
 // DB Config
 const db = require("./config/keys").mongoURI;
 
@@ -21,7 +24,8 @@ mongoose
   .connect(db, { 
     useNewUrlParser: true,
      useUnifiedTopology: true,
-    useFindAndModify: false })
+    useFindAndModify: false,
+  dbName: 'chefbook_dev' })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
@@ -35,7 +39,6 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
-app.use(express.static(__dirname + '/public/uploads'));
 
 // Server static assets if in production
 // if (process.env.NODE.ENV === "production") {
