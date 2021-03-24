@@ -35,7 +35,7 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
-app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
+app.use(express.static(__dirname + '/public/uploads'));
 
 // Server static assets if in production
 // if (process.env.NODE.ENV === "production") {
