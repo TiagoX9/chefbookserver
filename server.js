@@ -2,6 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const path = require("path");
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const cors = require('cors');
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
@@ -9,12 +12,13 @@ const posts = require("./routes/api/posts");
 
 const app = express();
 
-// Body parser middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(cors());
+app.options('*', cors())
 
-// Image Folder
-app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
+// Body parser middleware
+app.use(bodyParser.json());
+app.use(morgan('tiny'));
+
 
 // DB Config
 const db = require("./config/keys").mongoURI;
@@ -39,6 +43,8 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
+// Image Folder
+app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 
 // Server static assets if in production
 // if (process.env.NODE.ENV === "production") {
